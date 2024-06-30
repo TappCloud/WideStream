@@ -16,7 +16,7 @@ const config = {
     api: true
   },
   trans: {
-    ffmpeg: '/usr/bin/ffmpeg', // Path to ffmpeg on Domcloud.co
+    ffmpeg: '/usr/bin/ffmpeg', // Path to ffmpeg
     tasks: [
       {
         app: 'live',
