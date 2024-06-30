@@ -16,7 +16,7 @@ const config = {
     api: true
   },
   trans: {
-    ffmpeg: '/usr/bin/ffmpeg', // Path to ffmpeg
+    ffmpeg: '/usr/bin/ffmpeg', // Path to ffmpeg installed in the Docker container
     tasks: [
       {
         app: 'live',
