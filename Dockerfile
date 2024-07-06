@@ -1,25 +1,26 @@
-# Use the official Node.js image
-FROM node:18
+FROM ubuntu:20.04
 
-# Install FFMPEG
-RUN apt-get update && \
-    apt-get install -y ffmpeg
+# Install basic packages
+RUN apt-get update && apt-get install -y \
+    openjdk-11-jdk \
+    wget \
+    unzip \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Install Android SDK
+RUN mkdir /opt/android-sdk && cd /opt/android-sdk \
+    && wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip \
+    && unzip commandlinetools-linux-7583922_latest.zip \
+    && rm commandlinetools-linux-7583922_latest.zip
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+ENV ANDROID_SDK_ROOT /opt/android-sdk
 
-# Install Node.js dependencies
-RUN npm install
+# Install essential Android SDK packages
+RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT \
+    "platform-tools" \
+    "platforms;android-30" \
+    "build-tools;30.0.3"
 
-# Copy the rest of the application code to the working directory
-COPY . .
-
-# Expose the ports for RTMP and HTTP
-EXPOSE 1935
-EXPOSE 8000
-
-# Start the Node.js application
-CMD ["node", "server.js"]
+# Set environment variables
+ENV PATH $PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/cmdline-tools/bin:$ANDROID_SDK_ROOT/tools/bin
