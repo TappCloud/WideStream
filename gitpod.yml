@@ -1,0 +1,6 @@
+image:
+  file: Dockerfile
+
+tasks:
+  - init: ./gradlew assembleDebug
+    command: ./gradlew build
