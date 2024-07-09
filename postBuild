@@ -1,5 +1,4 @@
 #!/bin/bash
 
-# Install mpv
-sudo apt-get update
-sudo apt-get install -y mpv
+# Install mpv from the repository
+apt-get update && apt-get install -y mpv
