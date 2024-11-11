@@ -1,0 +1,12 @@
+{
+  "channels": [
+    {
+      "Name": "Tears of steel",
+      "Url": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+    },
+    {
+      "Name": "Big Buck Bunny",
+      "Url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    }
+  ]
+}
